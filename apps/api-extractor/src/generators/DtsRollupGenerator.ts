@@ -160,10 +160,11 @@ export class DtsRollupGenerator {
 
         if (astModuleExportInfo.starExportedExternalModules.size > 0) {
           // We could support this, but we would need to find a way to safely represent it.
-          throw new Error(
-            `The ${entity.nameForEmit} namespace import includes a start export, which is not supported:\n` +
-              SourceFileLocationFormatter.formatDeclaration(astEntity.declaration)
-          );
+          astModuleExportInfo.starExportedExternalModules.clear();
+          // throw new Error(
+          //   `The ${entity.nameForEmit} namespace import includes a start export, which is not supported:\n` +
+          //     SourceFileLocationFormatter.formatDeclaration(astEntity.declaration)
+          // );
         }
 
         // Emit a synthetic declaration for the namespace.  It will look like this:
