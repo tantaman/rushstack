@@ -593,13 +593,16 @@ export class AstSymbolTable {
       let parentAstSymbol: AstSymbol | undefined = undefined;
 
       if (!nominalAnalysis) {
-        for (const declaration of followedSymbol.declarations || []) {
+        for (let i: number = 0; i < (followedSymbol.declarations || []).length; ++i) {
+          const declaration: ts.Declaration = followedSymbol.declarations![i];
           if (!AstDeclaration.isSupportedSyntaxKind(declaration.kind)) {
-            throw new InternalError(
-              `The "${followedSymbol.name}" symbol has a` +
-                ` ts.SyntaxKind.${ts.SyntaxKind[declaration.kind]} declaration which is not (yet?)` +
-                ` supported by API Extractor`
-            );
+            // throw new InternalError(
+            //   `The "${followedSymbol.name}" symbol has a` +
+            //     ` ts.SyntaxKind.${ts.SyntaxKind[declaration.kind]} declaration which is not (yet?)` +
+            //     ` supported by API Extractor`
+            // );
+            // remove the declaration from the list
+            followedSymbol.declarations!.splice(i--, 1);
           }
         }
 
