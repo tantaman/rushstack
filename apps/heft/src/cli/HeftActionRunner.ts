@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
 
-import { performance } from 'perf_hooks';
-import { createInterface, type Interface as ReadlineInterface } from 'readline';
-import os from 'os';
+import { performance } from 'node:perf_hooks';
+import { createInterface, type Interface as ReadlineInterface } from 'node:readline';
+import os from 'node:os';
 
 import { AlreadyReportedError, InternalError, type IPackageJson } from '@rushstack/node-core-library';
 import { Colorize, ConsoleTerminalProvider, type ITerminal } from '@rushstack/terminal';
@@ -387,32 +387,32 @@ export class HeftActionRunner {
           parallelism: this._parallelism,
           abortSignal,
           requestRun,
-          beforeExecuteOperationAsync: async (
+          beforeExecuteOperation(
             operation: Operation<IHeftTaskOperationMetadata, IHeftPhaseOperationMetadata>
-          ) => {
+          ): void {
             if (taskStart.isUsed()) {
-              await taskStart.promise({ operation });
+              taskStart.call({ operation });
             }
           },
-          afterExecuteOperationAsync: async (
+          afterExecuteOperation(
             operation: Operation<IHeftTaskOperationMetadata, IHeftPhaseOperationMetadata>
-          ) => {
+          ): void {
             if (taskFinish.isUsed()) {
-              await taskFinish.promise({ operation });
+              taskFinish.call({ operation });
             }
           },
-          beforeExecuteOperationGroupAsync: async (
+          beforeExecuteOperationGroup(
             operationGroup: OperationGroupRecord<IHeftPhaseOperationMetadata>
-          ) => {
+          ): void {
             if (operationGroup.metadata.phase && phaseStart.isUsed()) {
-              await phaseStart.promise({ operation: operationGroup });
+              phaseStart.call({ operation: operationGroup });
             }
           },
-          afterExecuteOperationGroupAsync: async (
+          afterExecuteOperationGroup(
             operationGroup: OperationGroupRecord<IHeftPhaseOperationMetadata>
-          ) => {
+          ): void {
             if (operationGroup.metadata.phase && phaseFinish.isUsed()) {
-              await phaseFinish.promise({ operation: operationGroup });
+              phaseFinish.call({ operation: operationGroup });
             }
           }
         };

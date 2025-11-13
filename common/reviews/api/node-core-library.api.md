@@ -6,9 +6,9 @@
 
 /// <reference types="node" />
 
-import * as child_process from 'child_process';
-import * as nodeFs from 'fs';
-import * as nodePath from 'path';
+import * as child_process from 'node:child_process';
+import * as fs from 'node:fs';
+import * as nodePath from 'node:path';
 
 // @public
 export enum AlreadyExistsBehavior {
@@ -23,6 +23,9 @@ export class AlreadyReportedError extends Error {
     static [Symbol.hasInstance](instance: object): boolean;
     constructor();
 }
+
+// @public
+function areDeepEqual<TObject>(a: TObject, b: TObject): boolean;
 
 // @public
 export class Async {
@@ -57,6 +60,13 @@ export class AsyncQueue<T> implements AsyncIterable<[T, () => void]> {
 export type Brand<T, BrandTag extends string> = T & {
     __brand: BrandTag;
 };
+
+declare namespace Disposables {
+    export {
+        polyfillDisposeSymbols
+    }
+}
+export { Disposables }
 
 // @public
 export enum Encoding {
@@ -108,7 +118,7 @@ export class Executable {
     static tryResolve(filename: string, options?: IExecutableResolveOptions): string | undefined;
     static waitForExitAsync(childProcess: child_process.ChildProcess, options: IWaitForExitWithStringOptions): Promise<IWaitForExitResult<string>>;
     static waitForExitAsync(childProcess: child_process.ChildProcess, options: IWaitForExitWithBufferOptions): Promise<IWaitForExitResult<Buffer>>;
-    static waitForExitAsync(childProcess: child_process.ChildProcess, options?: IWaitForExitOptions): Promise<IWaitForExitResult<never>>;
+    static waitForExitAsync(childProcess: child_process.ChildProcess, options?: IWaitForExitOptions): Promise<IWaitForExitResultWithoutOutput>;
 }
 
 // @public
@@ -132,6 +142,7 @@ export class FileError extends Error {
     // @internal (undocumented)
     static _environmentVariableIsAbsolutePath: boolean;
     getFormattedErrorMessage(options?: IFileErrorFormattingOptions): string;
+    static getProblemMatcher(options?: Pick<IFileErrorFormattingOptions, 'format'>): IProblemPattern;
     readonly line: number | undefined;
     readonly projectFolder: string;
     // @internal (undocumented)
@@ -215,7 +226,7 @@ export type FileSystemCopyFilesAsyncFilter = (sourcePath: string, destinationPat
 export type FileSystemCopyFilesFilter = (sourcePath: string, destinationPath: string) => boolean;
 
 // @public
-export type FileSystemStats = nodeFs.Stats;
+export type FileSystemStats = fs.Stats;
 
 // @public
 export class FileWriter {
@@ -233,10 +244,14 @@ export const FolderConstants: {
 };
 
 // @public
-export type FolderItem = nodeFs.Dirent;
+export type FolderItem = fs.Dirent;
+
+// @public
+function getHomeFolder(): string;
 
 // @public
 export interface IAsyncParallelismOptions {
+    allowOversubscription?: boolean;
     concurrency?: number;
     weighted?: boolean;
 }
@@ -588,6 +603,21 @@ export interface IPeerDependenciesMetaTable {
 }
 
 // @public
+export interface IProblemPattern {
+    code?: number;
+    column?: number;
+    endColumn?: number;
+    endLine?: number;
+    file?: number;
+    line?: number;
+    location?: number;
+    loop?: boolean;
+    message: number;
+    regexp: string;
+    severity?: number;
+}
+
+// @public
 export interface IProcessInfo {
     childProcessInfos: IProcessInfo[];
     parentProcessInfo: IProcessInfo | undefined;
@@ -611,7 +641,7 @@ export interface IReadLinesFromIterableOptions {
 // @public
 export interface IRealNodeModulePathResolverOptions {
     // (undocumented)
-    fs?: Partial<Pick<typeof nodeFs, 'lstatSync' | 'readlinkSync'>>;
+    fs?: Partial<Pick<typeof fs, 'lstatSync' | 'readlinkSync'>>;
     ignoreMissingPaths?: boolean;
     // (undocumented)
     path?: Partial<Pick<typeof nodePath, 'isAbsolute' | 'join' | 'resolve' | 'sep'>>;
@@ -650,11 +680,15 @@ export interface IWaitForExitOptions {
 }
 
 // @public
-export interface IWaitForExitResult<T extends Buffer | string | never = never> {
-    exitCode: number | null;
-    signal: string | null;
+export interface IWaitForExitResult<T extends Buffer | string = never> extends IWaitForExitResultWithoutOutput {
     stderr: T;
     stdout: T;
+}
+
+// @public
+export interface IWaitForExitResultWithoutOutput {
+    exitCode: number | null;
+    signal: string | null;
 }
 
 // @public
@@ -770,6 +804,13 @@ export enum NewlineKind {
     OsDefault = "os"
 }
 
+declare namespace Objects {
+    export {
+        areDeepEqual
+    }
+}
+export { Objects }
+
 // @public
 export class PackageJsonLookup {
     constructor(parameters?: IPackageJsonLookupParameters);
@@ -819,6 +860,9 @@ export class Path {
     static isUnder(childPath: string, parentFolderPath: string): boolean;
     static isUnderOrEqual(childPath: string, parentFolderPath: string): boolean;
 }
+
+// @public
+function polyfillDisposeSymbols(): void;
 
 // @public
 export enum PosixModeBits {
@@ -910,5 +954,12 @@ export class TypeUuid {
     static isInstanceOf(targetObject: unknown, typeUuid: string): boolean;
     static registerClass(targetClass: any, typeUuid: string): void;
 }
+
+declare namespace User {
+    export {
+        getHomeFolder
+    }
+}
+export { User }
 
 ```

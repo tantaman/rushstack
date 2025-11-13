@@ -1,11 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
 
-import * as crypto from 'crypto';
+import * as crypto from 'node:crypto';
+
 import { InternalError, NewlineKind, Sort } from '@rushstack/node-core-library';
 import { CollatedTerminal, type CollatedWriter } from '@rushstack/stream-collator';
-import { DiscardStdoutTransform, TextRewriterTransform } from '@rushstack/terminal';
-import { SplitterTransform, type TerminalWritable, type ITerminal, Terminal } from '@rushstack/terminal';
+import {
+  DiscardStdoutTransform,
+  TextRewriterTransform,
+  SplitterTransform,
+  type TerminalWritable,
+  type ITerminal,
+  Terminal
+} from '@rushstack/terminal';
 
 import { CollatedTerminalProvider } from '../../utilities/CollatedTerminalProvider';
 import { OperationStatus } from './OperationStatus';
@@ -22,7 +29,6 @@ import type { CobuildConfiguration } from '../../api/CobuildConfiguration';
 import { DisjointSet } from '../cobuild/DisjointSet';
 import { PeriodicCallback } from './PeriodicCallback';
 import { NullTerminalProvider } from '../../utilities/NullTerminalProvider';
-
 import type { Operation } from './Operation';
 import type { IOperationRunnerContext } from './IOperationRunner';
 import type { RushConfigurationProject } from '../../api/RushConfigurationProject';

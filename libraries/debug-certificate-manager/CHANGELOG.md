@@ -1,6 +1,52 @@
 # Change Log - @rushstack/debug-certificate-manager
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 1.6.5
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 1.6.4
+Tue, 04 Nov 2025 08:15:14 GMT
+
+_Version update only_
+
+## 1.6.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 1.6.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 1.6.1
+Wed, 08 Oct 2025 00:13:28 GMT
+
+### Patches
+
+- Add support for the IPv6 localhost address (`::1`).
+
+## 1.6.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 1.5.9
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 1.5.8
+Tue, 30 Sep 2025 20:33:50 GMT
+
+### Patches
+
+- Add message to use VS Code extension to errors.
 
 ## 1.5.7
 Fri, 12 Sep 2025 15:13:07 GMT

@@ -1,6 +1,48 @@
 # Change Log - @rushstack/mcp-server
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 0.3.5
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 0.3.4
+Tue, 04 Nov 2025 08:15:15 GMT
+
+_Version update only_
+
+## 0.3.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 0.3.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 0.3.1
+Wed, 08 Oct 2025 00:13:29 GMT
+
+_Version update only_
+
+## 0.3.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 0.2.10
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 0.2.9
+Tue, 30 Sep 2025 20:33:51 GMT
+
+_Version update only_
 
 ## 0.2.8
 Fri, 12 Sep 2025 15:13:07 GMT

@@ -1,6 +1,41 @@
 # Change Log - @rushstack/operation-graph
 
-This log was last generated on Thu, 11 Sep 2025 00:22:31 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Oct 2025 00:13:38 GMT and should not be manually modified.
+
+## 0.5.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 0.5.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 0.5.1
+Wed, 08 Oct 2025 00:13:29 GMT
+
+_Version update only_
+
+## 0.5.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 0.4.1
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 0.4.0
+Tue, 30 Sep 2025 20:33:51 GMT
+
+### Minor changes
+
+- Require the "requestor" parameter and add a new "detail" parameter for watch-mode rerun requests. Make "name" a required field for operations.
+- (BREAKING CHANGE) Revert the extensibility points for `(before/after)ExecuteOperation(Group)?Async` to be synchronous to signify that they are only meant for logging, not for expensive work.
 
 ## 0.3.2
 Thu, 11 Sep 2025 00:22:31 GMT

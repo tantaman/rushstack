@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
 
-import type { pki } from 'node-forge';
 import * as path from 'node:path';
 import { EOL } from 'node:os';
+
+import type { pki } from 'node-forge';
+
 import { FileSystem } from '@rushstack/node-core-library';
 import type { ITerminal } from '@rushstack/terminal';
 
@@ -28,7 +30,7 @@ export const DEFAULT_CERTIFICATE_SUBJECT_NAMES: ReadonlyArray<string> = ['localh
  * The set of ip addresses the certificate should be generated for, by default.
  * @public
  */
-export const DEFAULT_CERTIFICATE_SUBJECT_IP_ADDRESSES: ReadonlyArray<string> = ['127.0.0.1'];
+export const DEFAULT_CERTIFICATE_SUBJECT_IP_ADDRESSES: ReadonlyArray<string> = ['127.0.0.1', '::1'];
 
 const DISABLE_CERT_GENERATION_VARIABLE_NAME: 'RUSHSTACK_DISABLE_DEV_CERT_GENERATION' =
   'RUSHSTACK_DISABLE_DEV_CERT_GENERATION';
@@ -145,6 +147,10 @@ export interface ICertificateManagerOptions extends ICertificateStoreOptions {}
 
 const MAX_CERTIFICATE_VALIDITY_DAYS: 365 = 365;
 
+const VS_CODE_EXTENSION_FIX_MESSAGE: string =
+  'Use the "Debug Certificate Manager" Extension for VS Code (ms-RushStack.debug-certificate-manager) and run the ' +
+  '"Debug Certificate Manager: Ensure and Sync TLS Certificates" command to fix certificate issues. ';
+
 /**
  * A utility class to handle generating, trusting, and untrustring a debug certificate.
  * Contains two public methods to `ensureCertificate` and `untrustCertificate`.
@@ -177,7 +183,8 @@ export class CertificateManager {
     if (process.env[DISABLE_CERT_GENERATION_VARIABLE_NAME] === '1') {
       // Allow the environment (e.g. GitHub codespaces) to forcibly disable dev cert generation
       terminal.writeLine(
-        `Found environment variable ${DISABLE_CERT_GENERATION_VARIABLE_NAME}=1, disabling certificate generation.`
+        `Found environment variable ${DISABLE_CERT_GENERATION_VARIABLE_NAME}=1, disabling certificate generation. ` +
+          VS_CODE_EXTENSION_FIX_MESSAGE
       );
       canGenerateNewCertificate = false;
     }
@@ -207,7 +214,8 @@ export class CertificateManager {
       } else {
         validationResult.validationMessages.push(
           'Untrust the certificate and generate a new one, or set the ' +
-            '`canGenerateNewCertificate` parameter to `true` when calling `ensureCertificateAsync`.'
+            '`canGenerateNewCertificate` parameter to `true` when calling `ensureCertificateAsync`. ' +
+            VS_CODE_EXTENSION_FIX_MESSAGE
         );
         throw new Error(validationResult.validationMessages.join(' '));
       }
@@ -216,7 +224,8 @@ export class CertificateManager {
     } else {
       throw new Error(
         'No development certificate found. Generate a new certificate manually, or set the ' +
-          '`canGenerateNewCertificate` parameter to `true` when calling `ensureCertificateAsync`.'
+          '`canGenerateNewCertificate` parameter to `true` when calling `ensureCertificateAsync`. ' +
+          VS_CODE_EXTENSION_FIX_MESSAGE
       );
     }
   }

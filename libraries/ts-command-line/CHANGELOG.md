@@ -1,6 +1,38 @@
 # Change Log - @rushstack/ts-command-line
 
-This log was last generated on Thu, 11 Sep 2025 00:22:31 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Oct 2025 00:13:38 GMT and should not be manually modified.
+
+## 5.1.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 5.1.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 5.1.1
+Wed, 08 Oct 2025 00:13:29 GMT
+
+_Version update only_
+
+## 5.1.0
+Fri, 03 Oct 2025 20:10:00 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 5.0.5
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 5.0.4
+Tue, 30 Sep 2025 20:33:51 GMT
+
+_Version update only_
 
 ## 5.0.3
 Thu, 11 Sep 2025 00:22:31 GMT

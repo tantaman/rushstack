@@ -1,6 +1,53 @@
 # Change Log - @rushstack/heft
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 1.1.5
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 1.1.4
+Tue, 04 Nov 2025 08:15:14 GMT
+
+_Version update only_
+
+## 1.1.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 1.1.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 1.1.1
+Wed, 08 Oct 2025 00:13:28 GMT
+
+_Version update only_
+
+## 1.1.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 1.0.0
+Tue, 30 Sep 2025 23:57:45 GMT
+
+### Breaking changes
+
+- Release Heft version 1.0.0
+
+## 0.75.0
+Tue, 30 Sep 2025 20:33:51 GMT
+
+### Minor changes
+
+- Enhance logging in watch mode by allowing plugins to report detailed reasons for requesting rerun, e.g. specific changed files.
+- (BREAKING CHANGE) Make the `taskStart`/`taskFinish`/`phaseStart`/`phaseFinish` hooks synchronous to signify that they are not intended to be used for expensive work.
 
 ## 0.74.5
 Fri, 12 Sep 2025 15:13:07 GMT

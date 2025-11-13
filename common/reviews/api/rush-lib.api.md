@@ -13,10 +13,14 @@ import { AsyncSeriesWaterfallHook } from 'tapable';
 import type { CollatedWriter } from '@rushstack/stream-collator';
 import type { CommandLineParameter } from '@rushstack/ts-command-line';
 import { CommandLineParameterKind } from '@rushstack/ts-command-line';
+import { CredentialCache } from '@rushstack/credential-cache';
 import { HookMap } from 'tapable';
+import { ICredentialCacheEntry } from '@rushstack/credential-cache';
+import { ICredentialCacheOptions } from '@rushstack/credential-cache';
 import { IFileDiffStatus } from '@rushstack/package-deps-hash';
 import { IPackageJson } from '@rushstack/node-core-library';
 import { IPrefixMatch } from '@rushstack/lookup-by-path';
+import type { IProblemCollector } from '@rushstack/terminal';
 import { ITerminal } from '@rushstack/terminal';
 import { ITerminalProvider } from '@rushstack/terminal';
 import { JsonNull } from '@rushstack/node-core-library';
@@ -138,25 +142,7 @@ export class CommonVersionsConfiguration {
     save(): boolean;
 }
 
-// @beta (undocumented)
-export class CredentialCache {
-    // (undocumented)
-    deleteCacheEntry(cacheId: string): void;
-    // (undocumented)
-    dispose(): void;
-    // (undocumented)
-    static initializeAsync(options: ICredentialCacheOptions): Promise<CredentialCache>;
-    // (undocumented)
-    saveIfModifiedAsync(): Promise<void>;
-    // (undocumented)
-    setCacheEntry(cacheId: string, entry: ICredentialCacheEntry): void;
-    // (undocumented)
-    trimExpiredEntries(): void;
-    // (undocumented)
-    tryGetCacheEntry(cacheId: string): ICredentialCacheEntry | undefined;
-    // (undocumented)
-    static usingAsync(options: ICredentialCacheOptions, doActionAsync: (credentialCache: CredentialCache) => Promise<void> | void): Promise<void>;
-}
+export { CredentialCache }
 
 // @beta
 export enum CustomTipId {
@@ -432,22 +418,9 @@ export interface ICreateOperationsContext {
     readonly rushConfiguration: RushConfiguration;
 }
 
-// @beta (undocumented)
-export interface ICredentialCacheEntry {
-    // (undocumented)
-    credential: string;
-    // (undocumented)
-    credentialMetadata?: object;
-    // (undocumented)
-    expires?: Date;
-}
+export { ICredentialCacheEntry }
 
-// @beta (undocumented)
-export interface ICredentialCacheOptions {
-    cacheFilePath?: string;
-    // (undocumented)
-    supportEditing: boolean;
-}
+export { ICredentialCacheOptions }
 
 // @beta
 export interface ICustomTipInfo {
@@ -621,6 +594,7 @@ export interface IOperationExecutionResult {
     readonly metadataFolderPath: string | undefined;
     readonly nonCachedDurationMs: number | undefined;
     readonly operation: Operation;
+    readonly problemCollector: IProblemCollector;
     readonly silent: boolean;
     readonly status: OperationStatus;
     readonly stdioSummarizer: StdioSummarizer;
@@ -759,6 +733,8 @@ export interface IPnpmLockfilePolicies {
 
 // @internal
 export interface _IPnpmOptionsJson extends IPackageManagerOptionsJsonBase {
+    // (undocumented)
+    $schema?: string;
     alwaysFullInstall?: boolean;
     alwaysInjectDependenciesFromOtherSubspaces?: boolean;
     autoInstallPeers?: boolean;
@@ -769,6 +745,8 @@ export interface _IPnpmOptionsJson extends IPackageManagerOptionsJsonBase {
     globalPackageExtensions?: Record<string, IPnpmPackageExtension>;
     globalPatchedDependencies?: Record<string, string>;
     globalPeerDependencyRules?: IPnpmPeerDependencyRules;
+    minimumReleaseAge?: number;
+    minimumReleaseAgeExclude?: string[];
     pnpmLockfilePolicies?: IPnpmLockfilePolicies;
     pnpmStore?: PnpmStoreLocation;
     preventManualShrinkwrapChanges?: boolean;
@@ -1181,9 +1159,11 @@ export class PnpmOptionsConfiguration extends PackageManagerOptionsConfiguration
     // (undocumented)
     readonly jsonFilename: string | undefined;
     // @internal (undocumented)
-    static loadFromJsonFileOrThrow(jsonFilename: string, commonTempFolder: string): PnpmOptionsConfiguration;
+    static loadFromJsonFileOrThrow(jsonFilePath: string, commonTempFolder: string): PnpmOptionsConfiguration;
     // @internal (undocumented)
     static loadFromJsonObject(json: _IPnpmOptionsJson, commonTempFolder: string): PnpmOptionsConfiguration;
+    readonly minimumReleaseAge: number | undefined;
+    readonly minimumReleaseAgeExclude: string[] | undefined;
     readonly pnpmLockfilePolicies: IPnpmLockfilePolicies | undefined;
     readonly pnpmStore: PnpmStoreLocation;
     readonly pnpmStorePath: string;

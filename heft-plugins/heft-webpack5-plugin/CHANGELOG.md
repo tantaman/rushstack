@@ -1,6 +1,61 @@
 # Change Log - @rushstack/heft-webpack5-plugin
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 1.2.5
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 1.2.4
+Tue, 04 Nov 2025 08:15:14 GMT
+
+_Version update only_
+
+## 1.2.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 1.2.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 1.2.1
+Fri, 17 Oct 2025 23:22:33 GMT
+
+### Patches
+
+- dev-server: add ipv6 loopback address support in terminal output
+- add debug log when Webpack is imported from the rig package
+
+## 1.2.0
+Wed, 08 Oct 2025 00:13:28 GMT
+
+### Minor changes
+
+- Allow infrastructure logs to be printed.
+- Use project-level webpack dependency when it's installed.
+
+## 1.1.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 1.0.0
+Tue, 30 Sep 2025 23:57:45 GMT
+
+### Breaking changes
+
+- Release Heft version 1.0.0
+
+## 0.11.43
+Tue, 30 Sep 2025 20:33:51 GMT
+
+_Version update only_
 
 ## 0.11.42
 Fri, 12 Sep 2025 15:13:07 GMT

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
 
-import path from 'path';
+import path from 'node:path';
+
 import { BULK_SUPPRESSIONS_CLI_ESLINT_PACKAGE_NAME } from '../../constants';
 
 // When this list is updated, update the `eslint-bulk-suppressions-newest-test`
@@ -14,7 +15,8 @@ const TESTED_VERSIONS: Set<string> = new Set([
   '8.23.0',
   '8.23.1',
   '8.57.0',
-  '9.25.1'
+  '9.25.1',
+  '9.37.0'
 ]);
 
 export function getEslintPathAndVersion(packagePath: string): [string, string] {

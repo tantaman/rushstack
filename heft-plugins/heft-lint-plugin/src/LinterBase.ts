@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
 
-import * as path from 'path';
-import { performance } from 'perf_hooks';
-import { createHash, type Hash } from 'crypto';
+import * as path from 'node:path';
+import { performance } from 'node:perf_hooks';
+import { createHash, type Hash } from 'node:crypto';
+
 import { FileSystem, JsonFile, Path } from '@rushstack/node-core-library';
 import type { ITerminal } from '@rushstack/terminal';
 import type { IScopedLogger } from '@rushstack/heft';
@@ -148,12 +149,13 @@ export abstract class LinterBase<TLintResult> {
       ) {
         fileCount++;
         const results: TLintResult[] = await this.lintFileAsync(sourceFile);
-        if (results.length === 0) {
+        // Always forward the results, since they might be suppressed.
+        for (const result of results) {
+          lintResults.push(result);
+        }
+
+        if (!this.hasLintFailures(results)) {
           newNoFailureFileVersions.set(relative, version);
-        } else {
-          for (const result of results) {
-            lintResults.push(result);
-          }
         }
       } else {
         newNoFailureFileVersions.set(relative, version);
@@ -197,7 +199,9 @@ export abstract class LinterBase<TLintResult> {
 
   protected abstract lintFileAsync(sourceFile: IExtendedSourceFile): Promise<TLintResult[]>;
 
-  protected abstract lintingFinishedAsync(lintFailures: TLintResult[]): Promise<void>;
+  protected abstract lintingFinishedAsync(lintResults: TLintResult[]): Promise<void>;
+
+  protected abstract hasLintFailures(lintResults: TLintResult[]): boolean;
 
   protected abstract isFileExcludedAsync(filePath: string): Promise<boolean>;
 }

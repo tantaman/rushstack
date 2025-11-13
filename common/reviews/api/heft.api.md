@@ -17,7 +17,7 @@ import { CommandLineParameter } from '@rushstack/ts-command-line';
 import { CommandLineStringListParameter } from '@rushstack/ts-command-line';
 import { CommandLineStringParameter } from '@rushstack/ts-command-line';
 import { CustomValidationFunction } from '@rushstack/heft-config-file';
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { ICustomJsonPathMetadata } from '@rushstack/heft-config-file';
 import { ICustomPropertyInheritance } from '@rushstack/heft-config-file';
 import { IJsonPathMetadata } from '@rushstack/heft-config-file';
@@ -38,6 +38,7 @@ import type { Operation } from '@rushstack/operation-graph';
 import type { OperationGroupRecord } from '@rushstack/operation-graph';
 import { PathResolutionMethod } from '@rushstack/heft-config-file';
 import { PropertyInheritanceCustomFunction } from '@rushstack/heft-config-file';
+import type { SyncHook } from 'tapable';
 
 export { CommandLineChoiceListParameter }
 
@@ -152,11 +153,11 @@ export interface IHeftLifecycleCleanHookOptions {
 // @public
 export interface IHeftLifecycleHooks {
     clean: AsyncParallelHook<IHeftLifecycleCleanHookOptions>;
-    phaseFinish: AsyncParallelHook<IHeftPhaseFinishHookOptions>;
-    phaseStart: AsyncParallelHook<IHeftPhaseStartHookOptions>;
+    phaseFinish: SyncHook<IHeftPhaseFinishHookOptions>;
+    phaseStart: SyncHook<IHeftPhaseStartHookOptions>;
     recordMetrics: AsyncParallelHook<IHeftRecordMetricsHookOptions>;
-    taskFinish: AsyncParallelHook<IHeftTaskFinishHookOptions>;
-    taskStart: AsyncParallelHook<IHeftTaskStartHookOptions>;
+    taskFinish: SyncHook<IHeftTaskFinishHookOptions>;
+    taskStart: SyncHook<IHeftTaskStartHookOptions>;
     toolFinish: AsyncParallelHook<IHeftLifecycleToolFinishHookOptions>;
     toolStart: AsyncParallelHook<IHeftLifecycleToolStartHookOptions>;
 }

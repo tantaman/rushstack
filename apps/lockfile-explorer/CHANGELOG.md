@@ -1,6 +1,67 @@
 # Change Log - @rushstack/lockfile-explorer
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 2.0.6
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 2.0.5
+Tue, 04 Nov 2025 08:15:14 GMT
+
+_Version update only_
+
+## 2.0.4
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 2.0.3
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 2.0.2
+Wed, 08 Oct 2025 00:13:29 GMT
+
+_Version update only_
+
+## 2.0.1
+Fri, 03 Oct 2025 20:10:00 GMT
+
+_Version update only_
+
+## 2.0.0
+Fri, 03 Oct 2025 17:28:43 GMT
+
+### Breaking changes
+
+- Add support for PNPM 10 lockfile format
+
+### Patches
+
+- Numerous improvements to the lockfile parser
+
+## 1.8.1
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 1.8.0
+Tue, 30 Sep 2025 20:33:51 GMT
+
+### Minor changes
+
+- Add syntax highlighter
+- Isolate .pnpmcfile.cjs evaluation
+
+### Patches
+
+- Bump "express" to 4.21.1 to address reported vulnerabilities in 4.20.0.
+- Upgraded `js-yaml` dependency
+- Improve support for PNPM lockfile format V6.0
+- Refactoring to support future work
 
 ## 1.7.42
 Fri, 12 Sep 2025 15:13:07 GMT

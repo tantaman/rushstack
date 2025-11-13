@@ -1,6 +1,48 @@
 # Change Log - @rushstack/package-deps-hash
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 4.5.5
+Wed, 12 Nov 2025 01:12:56 GMT
+
+_Version update only_
+
+## 4.5.4
+Tue, 04 Nov 2025 08:15:15 GMT
+
+_Version update only_
+
+## 4.5.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 4.5.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 4.5.1
+Wed, 08 Oct 2025 00:13:29 GMT
+
+_Version update only_
+
+## 4.5.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 4.4.9
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 4.4.8
+Tue, 30 Sep 2025 20:33:51 GMT
+
+_Version update only_
 
 ## 4.4.7
 Fri, 12 Sep 2025 15:13:07 GMT

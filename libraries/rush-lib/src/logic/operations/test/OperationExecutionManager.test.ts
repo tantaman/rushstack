@@ -16,9 +16,8 @@ jest.mock('@rushstack/terminal', () => {
   };
 });
 
-import { Terminal } from '@rushstack/terminal';
+import { Terminal, MockWritable, PrintUtilities } from '@rushstack/terminal';
 import { CollatedTerminal } from '@rushstack/stream-collator';
-import { MockWritable, PrintUtilities } from '@rushstack/terminal';
 
 import type { IPhase } from '../../../api/CommandLineConfiguration';
 import type { RushConfigurationProject } from '../../../api/RushConfigurationProject';
@@ -103,6 +102,7 @@ describe(OperationExecutionManager.name, () => {
         quietMode: false,
         debugMode: false,
         parallelism: 1,
+        allowOversubscription: true,
         destination: mockWritable
       };
     });
@@ -185,6 +185,7 @@ describe(OperationExecutionManager.name, () => {
           quietMode: false,
           debugMode: false,
           parallelism: 1,
+          allowOversubscription: true,
           destination: mockWritable
         }
       );
@@ -229,6 +230,7 @@ describe(OperationExecutionManager.name, () => {
           quietMode: false,
           debugMode: false,
           parallelism: 1,
+          allowOversubscription: true,
           destination: mockWritable
         }
       );
@@ -250,6 +252,7 @@ describe(OperationExecutionManager.name, () => {
           quietMode: false,
           debugMode: false,
           parallelism: 1,
+          allowOversubscription: true,
           destination: mockWritable
         };
       });
@@ -287,6 +290,7 @@ describe(OperationExecutionManager.name, () => {
           quietMode: false,
           debugMode: false,
           parallelism: 1,
+          allowOversubscription: true,
           destination: mockWritable
         };
       });

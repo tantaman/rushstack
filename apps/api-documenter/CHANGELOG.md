@@ -1,6 +1,52 @@
 # Change Log - @microsoft/api-documenter
 
-This log was last generated on Fri, 12 Sep 2025 15:13:07 GMT and should not be manually modified.
+This log was last generated on Wed, 12 Nov 2025 01:12:56 GMT and should not be manually modified.
+
+## 7.28.0
+Wed, 12 Nov 2025 01:12:56 GMT
+
+### Minor changes
+
+- Bump the `@microsoft/tsdoc` dependency to `~0.16.0`.
+
+## 7.27.4
+Tue, 04 Nov 2025 08:15:14 GMT
+
+_Version update only_
+
+## 7.27.3
+Fri, 24 Oct 2025 00:13:38 GMT
+
+_Version update only_
+
+## 7.27.2
+Wed, 22 Oct 2025 00:57:54 GMT
+
+_Version update only_
+
+## 7.27.1
+Wed, 08 Oct 2025 00:13:28 GMT
+
+_Version update only_
+
+## 7.27.0
+Fri, 03 Oct 2025 20:09:59 GMT
+
+### Minor changes
+
+- Normalize import of builtin modules to use the `node:` protocol.
+
+## 7.26.36
+Tue, 30 Sep 2025 23:57:45 GMT
+
+_Version update only_
+
+## 7.26.35
+Tue, 30 Sep 2025 20:33:50 GMT
+
+### Patches
+
+- Upgraded `js-yaml` dependency
 
 ## 7.26.34
 Fri, 12 Sep 2025 15:13:07 GMT
