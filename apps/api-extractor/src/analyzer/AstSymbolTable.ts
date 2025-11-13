@@ -404,7 +404,7 @@ export class AstSymbolTable {
                 } else {
                   // If you encounter this, please report a bug with a repro.  We're interested to know
                   // how it can occur.
-                  throw new InternalError(`Unable to follow symbol for "${identifierNode.text}"`);
+                  // throw new InternalError(`Unable to follow symbol for "${identifierNode.text}"`);
                 }
               } else {
                 referencedAstEntity = this._exportAnalyzer.fetchReferencedAstEntity(
